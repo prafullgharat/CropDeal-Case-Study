@@ -1,0 +1,166 @@
+<div class=" container">
+  <button (click)="back()" class="btn"><i style="color: #58cc56;" class="fa fa-chevron-circle-left fa-2x" aria-hidden="true"></i>
+  </button>
+<div class="mt-5">
+
+  <div *ngIf="isUpdated" class="alert alert-success alert-dismissible fade show text-center " role="alert">
+    <strong>Payment Successful</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+    <div class="row ">
+
+      <div class="col">
+            <!-- image -->
+            <div class="card shadow-sm text-center border-dark mb-2 " style="height: 550px" >
+                <img
+                  src="http://localhost:3000/{{ crop.cropImage }}"
+                  class="img-fluid p-3 h-100 m-auto "
+                  alt="Card image"
+                  style=" width:max-content"
+                />
+            </div>
+
+            <!-- details & description -->
+            <div class="card shadow-sm border-dark mb-4">
+              <div class="card-body">
+                <h4>Details</h4>
+                <table class="table w-25 table-borderless">
+                  <tr>
+                    <td>Category </td>
+                    <td>{{crop.category}}</td>
+                  </tr>
+                  <tr>
+                    <td>Name </td>
+                    <td>{{crop.name}}</td>
+                  </tr>
+                  <tr>
+                    <td>Quantity </td>
+                    <td>{{crop.quantity}}</td>
+                  </tr>
+                </table>
+                <hr>
+                <h4>Description </h4>
+                <p class="card-text">{{ crop.description }}</p>
+              </div>
+            </div>
+
+      </div>
+
+      <div class="col-md-auto">
+
+          <div class="card shadow-sm border-dark mb-4">
+            <div class="card-body">
+              <h4 class="card-title">{{crop.name | uppercase}}</h4>
+              <p class="card-text footer">
+                <span class="card-text"> {{ crop.address | uppercase }}</span>
+                <span class="card-text"> {{crop.dateOfPublish |date}}</span>
+              </p>
+              <button *ngIf="isDealer" class="btn btn-success mt-4 rounded-0 btn-lg btn-block"  data-toggle="modal" data-target="#paymentModal">Buy</button>
+            </div>
+          </div>
+
+          <div class="card shadow-sm border-dark mb-4">
+            <div class="card-body">
+              <h4 class="card-title">Farmer Description</h4>
+              <p class="card-text ">Name: {{crop.farmerName | titlecase}}</p> 
+              <p class="card-text ">Email: {{crop.farmerEmail}}</p> 
+              <p class="card-text ">Phone: {{crop.farmerPhone}}</p> 
+            </div>
+          </div>
+        
+
+      </div>
+
+
+    </div>
+</div>
+</div>
+
+
+  <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#paymentModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal for payment -->
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ 
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" >
+        <h5 class="modal-title" id="exampleModalLabel">Payment Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form  #userForm = "ngForm" >
+         <table class="table table-borderless">
+           <tr>
+            <td>Quantity :</td>
+            <td><input type="number" name="quantity"  class="form-control" (blur)="validateQuantity()" (change)="validateQuantity()"  #quant = ngModel [(ngModel)]="quantity" required> </td>
+            <td><h3>Kg</h3></td>
+           </tr>
+           <tr>
+             <td colspan="3" class="text-center">
+               <small class='text-danger' [class.d-none]="!quantityHasError || quant.untouched">Quantity must be greater than 0.</small>
+            </td>
+           </tr>
+           <tr>
+              <td>Price Negotiated Per Kg:</td>
+              <td><input type="number" name="price" [(ngModel)]="price" min="1" (blur)="validatePrice()" (change)="validatePrice()"  #pricePerKg = ngModel [(ngModel)]="price" required> </td>
+              <td><h3>₹</h3></td>
+           </tr>
+           <tr>
+            <td colspan="3" class="text-center">
+              <small class='text-danger' [class.d-none]="!priceHasError || pricePerKg.untouched">Price must be greater than 0.</small>
+           </td>
+          </tr>
+           <tr>
+              
+            <td>Total :</td>
+            <td>{{quantity * price}}</td>
+            <td><h3>₹</h3></td>
+            
+         </tr>
+            <tr>
+              <td colspan="2" class="text-center">
+                <button class="btn btn-warning  mt-4" data-dismiss="modal"  [disabled]='userForm.form.invalid || priceHasError || quantityHasError ' (click)="pay(quantity * price)">Check Out</button>
+              </td>
+            </tr>
+         </table>
+        </form>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+ 
+ <!-- The Modal for rating -->
+ <div [ngStyle]="{'display':display}" class="modal" id="ratingModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close"  (click)="hideRatingModal()" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+       Rating Modal body..
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<!-- <button (click)="showRatingModal()">Rating</button> -->
+<!-- <button type="button" class="btn btn-info btn-lg" (click)="showRatingModal()">click to open </button> -->

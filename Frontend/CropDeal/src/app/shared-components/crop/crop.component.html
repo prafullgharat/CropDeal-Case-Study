@@ -1,0 +1,64 @@
+<div class="container">
+ 
+      <h1>Crops</h1>
+      <br>
+
+        <!-- sorting and searching crops -->
+      <form class="form-inline">  
+        <div *ngIf = "isDealer"  class="form-check mb-2 mr-sm-2">
+          <input class="form-check-input" (click)="filter({type:'subscribed'})" type="checkbox" id="inlineCheckbox1" name="subscribed" [(ngModel)] = subscribed>
+          <label class="form-check-label" for="inlineCheckbox1">Subscribed</label>
+        </div>
+
+        <div class="form-check mb-2 mr-sm-2">
+          <input class="form-check-input" (click)="filter({type:'vegetables'})" type="checkbox" id="inlineFormCheck" name="vegetables" [(ngModel)] = vegetables>
+          <label class="form-check-label" for="inlineFormCheck">
+            Vegetables
+          </label>
+        </div>
+
+        <div class="form-check mb-2 mr-sm-2">
+          <input class="form-check-input" (click)="filter({type:'fruits'})" type="checkbox" id="inlineFormCheck2" name="fruits" [(ngModel)] = fruits>
+          <label class="form-check-label" for="inlineFormCheck2">
+            Fruits
+          </label>
+        </div>
+
+        <!-- <span><input type="checkbox" (click)="filter({type:'subscribed'})" name="subscribed" [(ngModel)] = subscribed > Subscribed Crops</span>
+        <span><input type="checkbox" (click)="filter({type:'vegetables'})" name="vegetables" [(ngModel)] = vegetables> Vegetables</span>
+        <span><input type="checkbox" (click)="filter({type:'fruits'})" name="fruits" [(ngModel)] = fruits> Fruits</span> -->
+
+        <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Search by crop name..." name="searchText"  [(ngModel)] = searchText>
+        <!-- <input type="text" name="searchText" [(ngModel)] = searchText> -->
+      </form>
+
+    <br>
+      <hr>
+
+        <div class="row mt-5">
+          <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-5 " *ngFor="let crop of crops | searchCrop : searchText">
+              <a routerLink="/dashboard/crop/{{crop._id}}" class="custom-card" >
+                <div class="card shadow-sm  border-success">
+                    <div>
+                      <img
+                        src="http://localhost:3000/{{ crop.cropImage }}"
+                        class="img-fluid p-3 m-auto"
+                        alt="Card image"
+                      />
+                    </div>
+                    <div class="card-body mt-0 pt-0">
+                      <h4 class="card-title text-center">{{crop.name | uppercase}} </h4>
+                      <p class="card-text">{{ (crop.description.length > 40) ? (crop.description | slice:0:40)+'...':(crop.description) }}</p>
+                      <hr>
+                      <p class="card-text footer">
+                        <span class="card-text"> {{crop.address | uppercase}}</span>
+                        <span class="card-text"> {{crop.dateOfPublish |date}}</span>
+                      </p>
+                    </div>
+                </div>
+              </a>
+          </div>
+        </div>
+    <!-- </div> -->
+  <!-- </div> -->
+</div>

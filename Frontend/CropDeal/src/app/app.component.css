@@ -1,0 +1,29 @@
+/* 
+router-outlet{
+    margin-top: 100px;
+} */
+
+
+.navbar-brand{
+    font-size: 1.6rem;
+    /* color: #30cd7e; */
+}
+.navbar-nav{
+    font-size: 1.2rem;
+    color: #58cc56;
+
+
+}
+
+.navbar{
+    background-color: #30cd7e;
+    color: #58cc56;
+}
+
+a{
+    /* color: #58cc56; */
+}
+
+a:active {
+    color: #58cc56;
+  }

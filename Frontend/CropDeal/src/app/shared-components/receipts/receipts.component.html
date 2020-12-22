@@ -1,0 +1,45 @@
+<div class="container">
+    <h1 class="text-center">Receipts</h1>
+    <hr>
+
+    <table class="table table-responsive table-hover m-auto shadow-sm">
+        <thead class="thead-light">
+          <tr class="shadow-sm">
+            <th  *ngIf = "!isDealer" scope="col">Dealer Name</th>
+            <th  *ngIf = "!isDealer" scope="col">Dealer Email</th>
+            <th  *ngIf = "!isFarmer" scope="col">Farmer Name</th>
+            <th  *ngIf = "!isFarmer" scope="col">Farmer Email</th>
+            <th scope="col">Date & Time</th>
+            <th scope="col">Crop Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Quantity (Kg)</th>
+            <th scope="col">Price Per Kg</th>
+            <th scope="col">Total</th>
+            <th>Receipt</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr  *ngFor="let receipt of receipts">
+            <td *ngIf = "!isDealer">{{receipt.dealerName}}</td>
+            <td *ngIf = "!isDealer">{{receipt.dealerEmail}}</td>
+            <td *ngIf = "!isFarmer">{{receipt.farmerName}}</td>
+            <td *ngIf = "!isFarmer">{{receipt.farmerEmail}}</td>
+            <td>{{receipt.dateOfPurchase | date:'short'}}</td>
+            <td>{{receipt.cropName}}</td>           
+            <td>{{receipt.category}}</td>
+            <td>{{receipt.quantity}}</td>
+            <td>{{receipt.pricePerKg}}</td>
+            <td>{{receipt.totalAmount}}</td>
+            
+
+            <!-- <td><button class="btn btn-success" (click) = "edit(farmer.email, farmer.userType)">Edit</button></td> -->
+            <td><button class="btn btn-danger" (click)="view(receipt._id)">Receipt</button></td>
+
+            
+          </tr>
+          
+        </tbody>
+    </table>
+
+</div>

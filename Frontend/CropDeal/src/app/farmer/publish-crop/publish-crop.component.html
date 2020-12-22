@@ -1,0 +1,75 @@
+ <h1 class="text-center">Publish Crop</h1>
+    <hr> 
+
+  <div *ngIf="isPublished" class="alert alert-success alert-dismissible fade show text-center " role="alert">
+      <strong>Crop is published</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <span class="anchor" id="formLogin"></span>
+
+      <div class="card rounded-0 shadow">
+  
+        <div class="card-body">
+          <form class="form"  #userForm = "ngForm" >
+
+            <div class="form-group">
+              <label for="name" >Crop Category</label><br>
+              <select [(ngModel)]="cropData.category" (click)="onSelect()"  #category = "ngModel" name="category" class="custom-select" [class.is-invalid]="categoryHasError && category.touched" (blur)="validateCategory(category.value)" (change)="validateCategory(category.value)" required>
+                <option value="default" selected>Select...</option>
+                <option  value="fruit">Fruit</option>
+                <option  value="vegetable">Vegetable</option>
+              </select>
+              <small class="text-danger" [class.d-none]="!categoryHasError || category.untouched">Please select a Category.</small>
+            </div>            
+
+            <div class="form-group">
+              <label for="name">Crop Name</label>
+              <select [(ngModel)]="cropData.name"  #name = ngModel name="name" class="form-control"  [class.is-invalid]="cropNameHasError && name.touched" (blur)="validateCropName(name.value)" (change)="validateCropName(name.value)" required>
+                <option value="default" selected>Select...</option>
+                <option *ngFor = "let crop of cropsList"  value="{{crop}}">{{crop}}</option>
+              </select>
+              <small class="text-danger" [class.d-none]="!cropNameHasError || name.untouched">Please select a crop name.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="quantity">Quantity (kg)</label>
+              <input type="number" [(ngModel)]="cropData.quantity" #quantity = ngModel name="quantity" class="form-control" min=1 (blur)="validateQuantity(quantity.value)" (change)="validateQuantity(quantity.value)" required>
+              <small class='text-danger' [class.d-none]="!quantityHasError || quantity.untouched">Quantity must be greater than 0.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="address">Location</label>
+              <input type="text" [(ngModel)]="cropData.address" #address=ngModel  name="address" class="form-control" required>
+              <small class='text-danger' [class.d-none]="address.valid || address.untouched">Location is required</small>
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input type="text" [(ngModel)]="cropData.description" #description = "ngModel" name="description" class="form-control" required>
+              <small class='text-danger' [class.d-none]="description.valid || description.untouched">Description is required</small>
+            </div>
+
+            <div class="form-group">
+              <label for="cropImage">Crop Image</label>
+              <input type="file" (change)="onFileSelected($event)" name="cropImage" class="form-control" required>
+              <small>Image size should be less than 1 MB.</small>
+            </div>
+            
+            <div class="text-center">
+              <p class="text-danger">{{error}}</p>
+            </div>
+            <button type="button"  [disabled]='userForm.form.invalid || cropNameHasError || categoryHasError || quantityHasError || cropImage == null' (click)="publishCrop()" class="btn btn-success  btn-lg btn-block">Submit</button>
+          </form>
+        </div>
+      </div>
+      
+
+    </div>
+
+
+  </div>

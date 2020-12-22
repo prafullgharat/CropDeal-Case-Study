@@ -1,0 +1,14 @@
+i{
+    color: #58cc56;
+}
+
+.btn{
+    border: 1px solid  #58cc56;
+    color: black;
+
+}
+.btn:hover{
+    background-color: #58cc56;
+    color: white;
+    
+}

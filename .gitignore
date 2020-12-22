@@ -1,0 +1,19 @@
+
+# dependencies 
+Backend/Crop/node_modules
+Backend/Dealer/node_modules
+Backend/User/node_modules
+Backend/Farmer/node_modules
+
+Backend/Order/node_modules
+
+Backend/Order/.env
+Backend/User/.env
+Backend/Crop/.env
+
+
+Frontend/CropDeal/node_modules
+
+
+
+

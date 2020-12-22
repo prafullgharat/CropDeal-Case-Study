@@ -1,0 +1,88 @@
+<header>
+    <h2>CropDeal</h2>
+    <P>Fresh And Fast Food</P>
+</header>
+
+
+<div class="card shadow-sm border-light p-4 mx-5 my-4 bg-light">
+    <h1 class="card-title pb-3">Our Solution</h1>
+    <div class="card-body">          
+          <!-- <hr> -->
+        <div class=" w-75 m-auto" >   
+            <p class="first-para">The App act as a bridge between the Farmer and the Dealer. All you need to do is selecting whether you are a 
+                Farmer or the Dealer, signing up with details and the payment information.
+            </p>
+            <p class="second-para">
+                There is no need for the farmer to carry the crop till the market, paying unexpected commissions and wait for proper price from the
+                Dealers. Whenever farmer want to sell the vegetables fruits at the Farm itself, he just wants to select the type of Crop. quantity
+                available, input the location/address and publish the information to Dealers. 
+            </p>
+            <div class="row w-50 m-auto">
+                <button routerLink="/dashboard/publish" class="btn col">Start Selling</button>
+                <button routerLink="/dashboard/crops" class="btn col">Start Buying</button>
+    
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<div class="">
+<div class="container mt-5">
+    <h1>Fresh Recommendations</h1>
+
+
+  <div class="row mt-5">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-5 " *ngFor="let crop of crops">
+        <a routerLink="/dashboard/crop/{{crop._id}}" class="custom-card" >
+          <div class="card shadow-sm  border-success">
+              <!-- <img class="card-img-top" src="http://localhost:3000/{{crop.cropImage}}" alt="Card image"> -->
+              <div>
+                <img
+                  src="http://localhost:3000/{{ crop.cropImage }}"
+                  class="img-fluid p-3 m-auto"
+                  alt="Card image"
+                />
+              </div>
+              <div class="card-body mt-0 pt-0">
+                <h4 class="card-title text-center title">{{crop.name | uppercase}} </h4>
+                <p class="card-text">{{ (crop.description.length > 40) ? (crop.description | slice:0:40)+'...':(crop.description) }}</p>
+
+                <hr>
+                <p class="card-text footer">
+                  <span class="card-text"> {{crop.address | uppercase}}</span>
+                  <span class="card-text"> {{crop.dateOfPublish |date}}</span>
+                </p>
+
+              </div>
+          
+          </div>
+        </a>
+    </div>
+  </div>
+
+
+
+  <div class="text-center">
+        <button routerLink="/dashboard/crops" class="btn w-25 m-auto " id="show-more">Show More</button>
+  </div>
+
+
+</div>
+</div>
+
+
+  <!-- Site footer -->
+  <footer class="site-footer pt-5 mt-5">
+  
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by 
+       <a href="#">prafullgharat</a>.
+          </p>
+        </div>
+       
+      </div>
+    </div>
+</footer>

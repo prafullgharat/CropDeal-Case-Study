@@ -1,0 +1,67 @@
+<div class="container">
+    <h1 class="text-center">Dealer Management</h1>
+    <hr>
+
+    <div *ngIf="isDeleted" class="alert alert-danger alert-dismissible fade show text-center " role="alert">
+      <strong>User Deleted</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <table class="table table-responsive  shadow-sm">
+        <thead class="thead-light shadow-sm">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">Bank Name</th>
+            <th scope="col">Account No</th>
+            <th scope="col">IFSC</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dealer of dealers">
+            <td>{{dealer.name}}</td>
+            <td>{{dealer.email}}</td>
+            <td>{{dealer.phone}}</td>
+            <td>{{dealer.address}}</td>
+            <td>{{dealer.bankDetails.bank_name}}</td>
+            <td>{{dealer.bankDetails.account_no}}</td>
+            <td>{{dealer.bankDetails.ifsc}}</td>
+            <td><button class="btn " (click) = "edit(dealer.email, dealer.userType)"><i style="color: green;" class="fa fa-pencil" aria-hidden="true"></i></button></td>
+            <td><button class="btn " (click) = "deleteDealerId = dealer.email"  data-toggle="modal" data-target="#deleteModal"><i style="color: rgb(226, 10, 10);" class="fa fa-trash" aria-hidden="true"></i></button></td>
+
+            
+          </tr>
+          
+        </tbody>
+    </table>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this user?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete(deleteDealerId)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

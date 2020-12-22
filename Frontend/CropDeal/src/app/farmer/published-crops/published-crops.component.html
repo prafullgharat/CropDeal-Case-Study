@@ -1,0 +1,30 @@
+<div class="container">
+
+  <h1>Published Crops</h1>
+  <hr>
+  <div class="row mt-5">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-5 " *ngFor="let crop of crops">
+      <a routerLink="/dashboard/crop/{{crop._id}}" class="custom-card" >
+        <div class="card shadow-sm  border-success">
+            <div>
+              <img
+                src="http://localhost:3000/{{ crop.cropImage }}"
+                class="img-fluid p-3 m-auto"
+                alt="Card image"
+              />
+            </div>
+            <div class="card-body mt-0 pt-0">
+              <h4 class="card-title text-center">{{crop.name | uppercase}} </h4>
+              <p class="card-text">{{ (crop.description.length > 40) ? (crop.description | slice:0:40)+'...':(crop.description) }}</p>
+              <hr>
+              <p class="card-text footer">
+                <span class="card-text"> {{crop.address | uppercase}}</span>
+                <span class="card-text"> {{crop.dateOfPublish |date}}</span>
+              </p>
+            </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</div>

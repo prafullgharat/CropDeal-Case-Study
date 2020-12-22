@@ -1,0 +1,86 @@
+
+<div class="container text-center">
+    <h2 class="text-center">Subscriptions</h2>
+    <hr>
+    <button class="btn btn-success mt-4 rounded-0 "  data-toggle="modal" data-target="#add">Add</button>
+
+    <table class="table table-responsive table-hover w-25 m-auto">
+        <thead class="thead-light">
+          <tr>
+            <!-- <th scope="col">Category</th> -->
+            <th scope="col">Crop Name</th>
+            
+            <!-- <th>Edit</th> -->
+            <th>Unsubscribe</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let crop of subscribedCrops">
+            <td>{{crop}}</td>
+            <td><button class="btn btn-danger" (click)="unsubscribe(crop)">Unsubscribe</button></td>
+
+            
+          </tr>
+          
+        </tbody>
+    </table>
+
+   <!-- Modal -->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" >
+          <h5 class="modal-title" id="exampleModalLabel">Add Subscription</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+           <table class="table table-borderless">
+             <tr>
+              <td>Category :</td>
+              <td>
+                  <!-- <input type="number" name="category" name="category" [(ngModel)]="category"> -->
+                <select [(ngModel)]="category" (click)="onSelect()" name="category" class="form-control">
+                    <option  value="fruit">Fruit</option>
+                    <option  value="vegetable">Vegetable</option>
+                </select>
+              </td>
+              
+              
+             </tr>
+             <tr>
+                
+                <td>Crop Name:</td>
+                <td>
+                    <select [(ngModel)]="cropName" name="cropName" class="form-control">
+                      <option *ngFor = "let crop of cropsList"  value="{{crop}}">{{crop}}</option>
+                  </select>
+                </td>                
+             </tr>
+             <tr>
+               <td colspan="2">     
+                  <h5 class='text-success' *ngIf="success">Subscribed</h5>
+                  <h5 class='text-danger ' *ngIf="alreadySubscribed">Already Subscribed</h5>
+
+               </td>
+             </tr>
+              <tr>
+                <td colspan="2" class="text-center">
+                  <button class="btn btn-warning  mt-4" (click)="add()">Subscribe</button>
+                </td>
+              </tr>
+           </table>
+          </form>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+</div>

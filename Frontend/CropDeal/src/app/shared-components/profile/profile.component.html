@@ -1,0 +1,130 @@
+<div class="container">
+    <h1 class="text-center">Profile</h1>
+    <hr> 
+
+    <div *ngIf="isUpdated" class="alert alert-success alert-dismissible fade show text-center " role="alert">
+        <strong>Profile Updated</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
+    <div class="row mt-5">
+        
+            <!-- Left Column -->
+            <div class="col-sm-4">
+            
+            <div class="bg-white text-grey rounded-0 shadow card">
+                <div class="card-body">
+                    <img src="http://localhost:4000/{{user.photo}}" style="height: 100%; width: 100%;"  class="img-fluid p-3 m-auto"alt="Profile Pic" />
+                    <div class="m-auto text-center">
+                        <label for="photo" class="btn text-center">Update Photo</label>
+                        <input type="file" id="photo" style="visibility:hidden;" (change)="onFileSelected($event)" name="profileImage" class="form-control rounded-0" >
+                    </div>
+                    <small class="text-danger">{{photoError}}</small> 
+
+                </div>
+                
+            </div><br>
+            <!-- End Left Column -->
+            </div>
+
+        <div class="col-sm-8" >   
+            <div class="card shadow  rounded-0 mb-4">
+                <div class="card-body">
+                    <form class="form-horizontal" #userForm = "ngForm" > 
+        
+                        <h4>Basic Information</h4>
+
+                        <div class="form-group">
+                            <div class="d-flex flex-row">
+                                <i class="fa fa-user m-3 fa-2x" aria-hidden="true"></i>
+                                <input type="text" placeholder="Name" #name = "ngModel" [class.is-invalid]="name.invalid && name.touched" class="m-3 form-control rounded-0 border-dark" name="userName" [(ngModel)] = 'user.name' required>
+                            </div>
+                            <small class='text-danger' [class.d-none]="name.valid || name.untouched">Name is required</small>                            
+                        </div>
+
+                        <div class="form-group ">
+                            
+                            <div class="d-flex flex-row">
+                                <i class="fa fa-phone m-3 fa-2x" aria-hidden="true"></i>
+                                <input type="tel" placeholder="Phone Number" #phone = "ngModel" [class.is-invalid]="phone.invalid && phone.touched" class="m-3 form-control rounded-0 border-dark  m-3" name="phone" [(ngModel)]  = 'user.phone' pattern="^\d{10}$" required>
+                            </div>   
+                            <div *ngIf="phone.errors && (phone.invalid || phone.touched)">
+                                <small class="text-danger" *ngIf = "phone.errors.required">Phone number is required</small>  
+                                <small class="text-danger" *ngIf = "phone.errors.pattern">Phone number must be  of 10 digits</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="d-flex flex-row">
+                                <i class="fa fa-envelope m-3 fa-2x" aria-hidden="true"></i>
+                                <input type="email" readonly name="email" class="m-3 form-control rounded-0 border-dark" [(ngModel)]  = 'user.email'>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="d-flex flex-row">
+                                <i class="fa fa-address-book m-3 fa-2x" aria-hidden="true"></i>
+                                <input type="text" placeholder="Address" name="address" class="m-3 form-control rounded-0 border-dark" [(ngModel)]  = 'user.address'>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <h4>Bank Details</h4>
+
+                        <div class="form-group ">
+                            <div class="d-flex flex-row">
+                                <i class="fa fa-university m-3 fa-2x" aria-hidden="true"></i>
+                                <input type="text" placeholder="Bank Name" #bankName = "ngModel" class="m-3 form-control rounded-0 border-dark" name="bankName" [(ngModel)] = 'user.bankDetails.bank_name'>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="d-flex flex-row">
+                                <i class="fa fa-address-card m-3 fa-2x" aria-hidden="true"></i>
+                                <input type="text" placeholder="Bank Account No" #accountNo = "ngModel" class="m-3 form-control rounded-0 border-dark" name="accountNo" [(ngModel)] = 'user.bankDetails.account_no'>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="d-flex flex-row">
+                                <i class="fa fa-edit m-3 fa-2x" aria-hidden="true"></i>
+                                <input type="text" placeholder="IFSC" #ifsc = "ngModel" class="m-3 form-control rounded-0 border-dark" name="ifsc" [(ngModel)] = 'user.bankDetails.ifsc'>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <button  class="btn" (click) = "update()"   [disabled]='userForm.form.invalid'> Save Changes </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+</div>
+
+
+
+
+   <!-- The Modal  -->
+ <div [ngStyle]="{'display':displayModal}" class="modal" id="updateModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header text-center">
+          <h4 class="modal-title "> Profile Updated</h4>
+          <button type="button" class="close"  (click)="hideUpdateModal()" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <!-- <div class="modal-body">
+         Profile Updated
+        </div> -->
+        
+      </div>
+    </div>
+  </div>

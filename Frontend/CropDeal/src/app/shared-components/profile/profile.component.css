@@ -1,0 +1,27 @@
+h1{
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 50px;
+    font-weight: 100;
+    letter-spacing: 3px;
+    text-align: center;
+    color: #58cc56;
+}
+
+.alert{
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+i{
+    color: #58cc56;
+}
+
+.btn{
+    border: 1px solid  #58cc56;
+    color: black;
+
+}
+.btn:hover{
+    background-color: #58cc56;
+    color: white;
+    
+}

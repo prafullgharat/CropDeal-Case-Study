@@ -1,0 +1,55 @@
+<div class="py-5">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <span class="anchor" id="formLogin"></span>
+  
+        <!-- form card register -->
+        <div class="card rounded-0 shadow">
+          <div class="card-header">
+            <h3 class="mb-0">Register</h3>
+          </div>
+          <div class="card-body">
+            <form class="form" #userForm = "ngForm" >
+
+              <div class="form-group">
+                <label for="name">User Type</label><br>
+                <select [(ngModel)]="registerUserData.userType" #userType = "ngModel" name="userType" class="custom-select rounded-0" [class.is-invalid]="userTypeHasError && userType.touched" (blur)="validateUserType(userType.value)" (change)="validateUserType(userType.value)" required>
+                  <option value="default" selected>Select...</option>
+                  <option  value="dealer">Dealer</option>
+                  <option  value="farmer">Farmer</option>
+                </select>
+                <small class="text-danger" [class.d-none]="!userTypeHasError || userType.untouched">Please select a user type</small>
+              </div>
+            
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" [(ngModel)]="registerUserData.name" #name = "ngModel" name="name" class="form-control rounded-0" required>
+                <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small> 
+              </div>
+
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" [(ngModel)]="registerUserData.address" name="address" class="form-control rounded-0">
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" #phone = "ngModel" class="form-control rounded-0" name="phone" [(ngModel)]  = 'registerUserData.phone' pattern="^\d{10}$" required>
+                <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
+                  <small class="text-danger" *ngIf = "phone.errors.required">Phone number is required</small>  
+                  <small class="text-danger" *ngIf = "phone.errors.pattern">Phone number must be  of 10 digits</small>
+                </div>
+              </div>
+              
+              <button type="button" [disabled]='userForm.form.invalid || userTypeHasError' (click)="registerUser()" class="btn btn-success  btn-lg btn-block">Next</button>
+            </form>
+          </div>
+          <!--/card-block-->
+        </div>
+        <!-- /form card register -->
+  
+      </div>
+  
+  
+    </div>
+  </div>

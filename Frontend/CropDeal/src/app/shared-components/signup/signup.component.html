@@ -1,0 +1,62 @@
+<div class="py-5">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <span class="anchor" id="formLogin"></span>
+  
+        <!-- form card login -->
+        <div class="card rounded-0 shadow">
+          <div class="card-header text-center">
+            <h3 class="mb-0">Sign up</h3>
+          </div>
+          <div class="card-body">
+            <form class="form" #userForm = "ngForm" >
+              <div class="form-group">
+
+                <label for="email">Email</label>
+                <input type="email"  #email = "ngModel"  [(ngModel)]="signupUserData.email"  [class.is-invalid]="email.invalid && email.touched" class=" form-control rounded-0 border-dark" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+
+                <div *ngIf="email.errors && (email.invalid && email.touched)">
+                  <small class="text-danger" *ngIf = "email.errors.required">Email is required</small>  
+                  <small class="text-danger" *ngIf = "email.errors.pattern">Invalid Email Format</small>
+                </div>
+
+              </div>
+              
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" [(ngModel)]="signupUserData.password" #password = "ngModel" [class.is-invalid]="password.invalid && password.touched" class=" form-control rounded-0 border-dark" minlength="8"  name="password" required>
+                <div *ngIf="password.errors && (password.invalid && password.touched)">
+                  <small class="text-danger" *ngIf = "password.errors.required">Password is required</small>  
+                  <small class="text-danger" *ngIf = "password.errors.minlength">Password must be 8 or more characters in length</small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label> Confirm Password</label>
+                <input type="password" [(ngModel)]="confirmPassword" #confirmpassword = "ngModel"  name="confirm-password" class="form-control rounded-0" class=" form-control rounded-0 border-dark"  required>
+                <div *ngIf="(signupUserData.password != confirmPassword) && (confirmpassword.touched)">
+                  <small class="text-danger">Password and confirm password did not match</small>  
+                </div>
+              </div>
+
+              <div class="text-center">
+                <p class="text-danger">{{emailError}}</p>
+              </div>
+
+              <button type="button" (click)="signupUser()"  [disabled]='userForm.form.invalid || (signupUserData.password != confirmPassword)' class="btn btn-success  btn-lg btn-block">Sign Up</button>
+            </form>
+          </div>
+          <!--/card-block-->
+        </div>
+        <!-- /form card login -->
+        <!-- <hr> -->
+            <div class="m-3 text-center">
+              Already a member? <a routerLink="/login">Log in here...</a>
+            </div>
+
+  
+      </div>
+  
+  
+    </div>
+  </div>

@@ -1,0 +1,122 @@
+
+<div class="print text-center">
+	<button class="btn btn-info" (click)="print()">
+		<i class="fa fa-print"></i>
+		Print this receipt
+	</button>
+</div>
+
+<div class="receipt-content" id="invoice">
+    <div class="container bootstrap snippets bootdey">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="invoice-wrapper">
+					<div class="payment-info">
+						<div class="row">
+							<div class="col-sm-6">
+								<span>Payment Id</span>
+								<strong>{{order.paymentId}}</strong>
+							</div>
+							<div class="col-sm-6 text-right">
+								<span>Payment Date</span>
+								<strong>{{order.dateOfPurchase | date}} - {{order.dateOfPurchase  | date:'shortTime'}}</strong>
+							</div>
+						</div>
+					</div>
+
+					<div class="payment-details">
+						<div class="row">
+							<div class="col-sm-6">
+								<span>Dealer</span>
+								<strong>
+									{{order.dealerName}}
+								</strong>
+								<p>
+									<a >
+										{{order.dealerEmail}}
+									</a>
+								</p>
+							</div>
+							<div class="col-sm-6 text-right">
+								<span>Payment To</span>
+								<strong>
+									{{order.farmerName}}
+								</strong>
+								<p>
+									<a>
+										{{order.farmerEmail}}
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="line-items">
+						<div class="headers clearfix">
+							<div class="row">
+                                <div class="col">Crop Name</div>
+                                <div class="col">Quantity</div>
+                                <div class="col">Cost Per Kg</div>
+								<div class="col text-right">Amount</div>
+							</div>
+						</div>
+						<div class="items">
+							<div class="row item">
+								<div class="col desc">
+									{{order.cropName}}
+								</div>
+								<div class="col qty">
+									{{order.quantity}}
+                                </div>
+                                <div class="col qty">
+									{{order.pricePerKg}}
+								</div>
+								<div class="col amount text-right">
+									{{order.totalAmount}}
+								</div>
+							</div>
+							
+						</div>
+						<div class="total text-right">
+							<!-- <p class="extra-notes">
+								<strong>Extra Notes</strong>
+								Please send all items at the same time to shipping address by next week.
+								Thanks a lot.
+							</p> -->
+							<div class="field">
+								Subtotal <span>{{order.totalAmount}}</span>
+							</div>
+							<div class="field">
+								Shipping <span>0</span>
+							</div>
+							<div class="field">
+								Discount <span>0%</span>
+							</div>
+							<div class="field grand-total">
+								Total <span>{{order.totalAmount}}</span>
+							</div>
+						</div>
+
+						<!-- <div class="print">
+							<a (click)="print()">
+								<i class="fa fa-print"></i>
+								Print this receipt
+							</a>
+						</div> -->
+
+						
+					</div>
+				</div>
+
+				
+			</div>
+		</div>
+	</div>
+</div> 
+<!-- 
+<div class="print text-center">
+	<button class="btn btn-info" (click)="print()">
+		<i class="fa fa-print"></i>
+		Print this receipt
+	</button>
+</div> -->

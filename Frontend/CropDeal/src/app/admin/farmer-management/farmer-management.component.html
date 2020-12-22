@@ -1,0 +1,79 @@
+<div class="container">
+    <h1 class="text-center">Farmer Management</h1>
+    <hr>
+
+    <div *ngIf="isDeleted" class="alert alert-danger alert-dismissible fade show text-center " role="alert">
+      <strong>User Deleted</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+
+    <table class="table table-responsive shadow-sm ">
+        <thead class="thead-light">
+          <tr class="shadow-sm">
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">Bank Name</th>
+            <th scope="col">Account No</th>
+            <th scope="col">IFSC</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let farmer of farmers">
+            <td>{{farmer.name}}</td>
+            <td>{{farmer.email}}</td>
+            <td>{{farmer.phone}}</td>
+            <td>{{farmer.address}}</td>
+            <td>{{farmer.bankDetails.bank_name}}</td>
+            <td>{{farmer.bankDetails.account_no}}</td>
+            <td>{{farmer.bankDetails.ifsc}}</td>
+            <td>
+              <button class="btn " style="color: green;" (click) = "edit(farmer.email, farmer.userType)">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn" style="color: red;" (click) = "deleteFarmerId = farmer.email"  data-toggle="modal" data-target="#deleteModal">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+            </button></td>
+
+            
+          </tr>
+          
+        </tbody>
+    </table>
+
+</div>
+
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this user?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete(deleteFarmerId)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.footer{
+    display: flex ;
+    margin-top: auto;
+    justify-content: space-between;
+    text-transform: uppercase;
+    /* color: rgba(0,47,52,.64); */
+    font-size: 12px;
+}
+
+h4{
+    font-size: 30px;
+    font-weight: 100;
+    /* letter-spacing: 3px; */
+    text-align: center;
+    color: #58cc56;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}

@@ -1,0 +1,43 @@
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-success border-right shadow bg-light" id="sidebar-wrapper">
+      <div class="sidebar-heading">{{userType | titlecase}}</div>
+      <div class="list-group list-group-flush">
+
+        <a *ngIf = "!isAdmin" routerLink="./profile" class="list-group-item list-group-item-action bg-light">Profile</a>
+        <a  routerLink="./crops" class="list-group-item list-group-item-action bg-light">Crops</a>
+
+
+        <a *ngIf = "isFarmer" routerLink="./publish" class="list-group-item list-group-item-action bg-light">Publish</a>
+        <a *ngIf = "isFarmer" routerLink="./published-crops" class="list-group-item list-group-item-action bg-light">My Published Crops</a>
+
+        <a *ngIf = "isDealer" routerLink="./subscription" class="list-group-item list-group-item-action bg-light">Subscription</a>
+
+        <a *ngIf = "isAdmin" routerLink="./farmer-management" class="list-group-item list-group-item-action bg-light">Farmer Management</a>
+        <a *ngIf = "isAdmin" routerLink="./dealer-management" class="list-group-item list-group-item-action bg-light">Dealer Management</a>
+        <!-- <a *ngIf = "isAdmin" routerLink="./crop-management" class="list-group-item list-group-item-action bg-light">Crop Management</a> -->
+
+        <a routerLink="./farmer/receipts" class="list-group-item list-group-item-action bg-light">Receipts</a>
+
+
+
+        
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <button class="btn btn-light" value="toggle"  onclick="toggle()"><img src="assets/list.png" height="30px" width="30px" alt="toggle"></button>
+
+      <!-- <div class="container-fluid"> -->
+        <router-outlet></router-outlet>            
+
+      <!-- </div> -->
+    </div>
+
+    <!-- /#page-content-wrapper -->
+
+</div>
+ 
